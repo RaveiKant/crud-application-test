@@ -7,7 +7,7 @@ import com.exchange.shared.UserResponse;
 
 public interface ExchangeService {
 	
-	public UserResponse addExchange(UserRequest userRequest);
+	public UserResponse addExchange(UserRequest newC);
 	public UserResponse getCompanies(String name);
 	public List<UserResponse> getAllExchange();
 }

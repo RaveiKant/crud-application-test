@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 @Table(name= "company")
 public class Company {
@@ -47,7 +47,8 @@ public class Company {
 	@Column(name = "brief", nullable = false)
 	private String brief;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnore
+	@ManyToMany
 	@JoinTable(name = "company_exchange", joinColumns = {@JoinColumn(name = "company_id") },
 	inverseJoinColumns = {@JoinColumn(name = "exchange_id") })
 	private List<Exchange> exchanges = new ArrayList<Exchange>();

@@ -16,9 +16,8 @@ public class UserRequest {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public UserRequest(String exchange_id, String name, String brief, String address, String remarks) {
+	public UserRequest( String name, String brief, String address, String remarks) {
 		super();
-		this.exchange_id = exchange_id;
 		this.name = name;
 		this.brief = brief;
 		this.address = address;

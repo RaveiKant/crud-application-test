@@ -36,13 +36,17 @@ public class ExchangeServiceImp implements ExchangeService{
 	@Override
 //	@Transactional
 	public UserResponse addExchange(UserRequest userRequest) {
-		String st = UUID.randomUUID().toString();
-		String str[] = st.split("-");
-		userRequest.setExchange_id(str[0]);
-		ModelMapper mapper = new ModelMapper();
-		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
-		Exchange exchange = exchangeDao.save(mapper.map(userRequest,Exchange.class));
-		return mapper.map(exchange,UserResponse.class);
+		if(exchangeDao.findByName(userRequest.getName())==null)
+		{
+			String st = UUID.randomUUID().toString();
+			String str[] = st.split("-");
+			userRequest.setExchange_id(str[0]);
+			ModelMapper mapper = new ModelMapper();
+			mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
+			Exchange exchange = exchangeDao.save(mapper.map(userRequest,Exchange.class));
+			return mapper.map(exchange,UserResponse.class);
+		}
+		return null;
 	}
 
 	@Override

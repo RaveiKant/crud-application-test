@@ -32,7 +32,7 @@ public class UserController {
 		if(res!=null)
 			return new ResponseEntity<UserLoginResponse>(res,HttpStatus.FOUND);
 		else
-			return null;
+			return new ResponseEntity<UserLoginResponse>(res,HttpStatus.FORBIDDEN);
 		
 	}
 	
@@ -43,7 +43,7 @@ public class UserController {
 		if(res!=null)
 			return new ResponseEntity<UserLoginResponse>(res,HttpStatus.CREATED);
 		else
-			return null;
+			return new ResponseEntity<UserLoginResponse>(res,HttpStatus.CONFLICT);
 	}
 	
 	@PutMapping("/update")
@@ -53,7 +53,7 @@ public class UserController {
 		if(res!=null)
 			return new ResponseEntity<UserLoginResponse>(res,HttpStatus.OK);
 		else
-			return null;
+			return new ResponseEntity<UserLoginResponse>(res,HttpStatus.CONFLICT);
 	}
 	
 	@DeleteMapping("/delete")
