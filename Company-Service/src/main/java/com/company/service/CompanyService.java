@@ -9,7 +9,7 @@ public interface CompanyService {
 	
 	public NewCompanyRequest addNewCompany(NewCompanyRequest newCompanyRequest);
 	public List<Company>listAll();
-	public String deleteCompany(NewCompanyRequest newCompanyRequest);
+	public String deleteCompany(String name);
 	
 
 }

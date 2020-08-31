@@ -74,9 +74,13 @@ public class CompanyServiceImpl implements CompanyService{
 	}
 
 	@Override
-	public String deleteCompany(NewCompanyRequest newCompanyRequest) {
-		// TODO Auto-generated method stub
-		return null;
+	public String deleteCompany(String name) {
+		Company company = companyDao.findByName(name);
+		if(company!=null) {
+			companyDao.delete(company);
+			return "Company with name "+name+"deleted successfully";
+		}
+		return "Company with name "+name+" not found";
 	}
 
 }
