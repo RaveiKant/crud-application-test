@@ -44,7 +44,7 @@ public class Exchange {
 	private String remarks;
 	
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "exchanges")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "exchanges")
 	private List<Company> companies= new ArrayList<Company>();
 	
 	

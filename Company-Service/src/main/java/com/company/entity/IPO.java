@@ -13,9 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 @Table(name="ipo")
 public class IPO {
@@ -24,8 +25,8 @@ public class IPO {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="company_id")
 	private Company company; 
 	
 	@Column(name="price_per_share")
@@ -36,10 +37,10 @@ public class IPO {
 	private Long totalShares;
 	
 	@Column(name="open_date")
-	private Date openDate;
+	private String openDate;
 	
 	@Column(name="open_time")
-	private Time openTime;
+	private String openTime;
 
 	private String remark;
 
@@ -48,9 +49,8 @@ public class IPO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public IPO(Company company, float pricePerShare, Long totalShares, Date openDate, Time openTime, String remark) {
+	public IPO(float pricePerShare, Long totalShares, String openDate, String openTime, String remark) {
 		super();
-		this.company = company;
 		this.pricePerShare = pricePerShare;
 		this.totalShares = totalShares;
 		this.openDate = openDate;
@@ -90,19 +90,19 @@ public class IPO {
 		this.totalShares = totalShares;
 	}
 
-	public Date getOpenDate() {
+	public String getOpenDate() {
 		return openDate;
 	}
 
-	public void setOpenDate(Date openDate) {
+	public void setOpenDate(String openDate) {
 		this.openDate = openDate;
 	}
 
-	public Time getOpenTime() {
+	public String getOpenTime() {
 		return openTime;
 	}
 
-	public void setOpenTime(Time openTime) {
+	public void setOpenTime(String openTime) {
 		this.openTime = openTime;
 	}
 

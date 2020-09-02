@@ -21,7 +21,7 @@ import com.company.service.CompanyService;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/company")
 public class CompanyController {
 	
 	@Autowired
@@ -38,6 +38,11 @@ public class CompanyController {
 	public List<Company> listAll()
 	{
 		return companyService.listAll();
+	}
+	@GetMapping("find/{keyword}")
+	public List<Company> findByPatter(@PathVariable("keyword") String keyword)
+	{
+		return companyService.patternFind(keyword);
 	}
 	
 	@DeleteMapping("delete/{name}")

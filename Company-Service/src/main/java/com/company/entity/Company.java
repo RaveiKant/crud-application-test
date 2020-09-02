@@ -51,7 +51,7 @@ public class Company {
 	@OneToMany(mappedBy="company", cascade=CascadeType.ALL)
 	private List<CompanyCode> companyCode = new ArrayList<CompanyCode>();
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "company_exchange", joinColumns = {@JoinColumn(name = "company_id") },
 	inverseJoinColumns = {@JoinColumn(name = "exchange_id") })
 	private List<Exchange> exchanges = new ArrayList<Exchange>();
@@ -61,7 +61,7 @@ public class Company {
 	private Sector sector;
 	
 	
-	@OneToMany(mappedBy="company",cascade = CascadeType.ALL )
+	@OneToMany(mappedBy="company",cascade = CascadeType.ALL, orphanRemoval =true)
 	private List<IPO> ipo = new ArrayList<IPO>();
 	
 	@OneToMany(mappedBy ="company",orphanRemoval=true, cascade = CascadeType.ALL)

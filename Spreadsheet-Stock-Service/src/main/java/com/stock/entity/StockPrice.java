@@ -1,6 +1,6 @@
-package com.company.entity;
+package com.stock.entity;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Time;
 
 import javax.persistence.Column;
@@ -14,11 +14,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 @Table(name="stock_price")
 public class StockPrice {
@@ -27,8 +26,8 @@ public class StockPrice {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@JsonIgnore
-	@ManyToOne(fetch=FetchType.LAZY)
+	
+	@ManyToOne
 	@JoinColumn(name="company_id")
 	private Company company;
 	
@@ -37,13 +36,13 @@ public class StockPrice {
 	
 	private Date date;
 	
-	private Time time;
+	private String time;
 	
 	public StockPrice() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public StockPrice(Company company, Float currentPrice, Date date, Time time) {
+	public StockPrice(Company company, Float currentPrice, Date date, String time) {
 		super();
 		this.company = company;
 		this.currentPrice = currentPrice;
@@ -75,10 +74,10 @@ public class StockPrice {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public Time getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(Time time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 	

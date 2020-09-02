@@ -8,8 +8,9 @@ import com.company.entity.Company;
 public interface CompanyService {
 	
 	public NewCompanyRequest addNewCompany(NewCompanyRequest newCompanyRequest);
-	public List<Company>listAll();
+	public List<Company> listAll();
 	public String deleteCompany(String name);
+	public List<Company> patternFind(String name);
 	
 
 }

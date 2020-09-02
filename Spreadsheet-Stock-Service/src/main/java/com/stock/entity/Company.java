@@ -1,4 +1,4 @@
-package com.sector.entity;
+package com.stock.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,18 +6,24 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
-@Table(name ="company")
+@Table(name= "company")
 public class Company {
 	
 	@Id
@@ -25,7 +31,7 @@ public class Company {
 	@Column(name ="id")
 	private int id;
 	
-	@Column(name = "company_id")
+	@Column(name = "company_id",nullable = false,unique=true)
 	private String company_id;
 	
 	@Column(name = "name", nullable = false)
@@ -37,16 +43,17 @@ public class Company {
 	@Column(name = "ceo", nullable  = false)
 	private String ceo;
 	
-	@Column(name = "directors", nullable  = false)
+	@Column(name = "directors", nullable  = false, columnDefinition = "TEXT")
 	private String directors;
 	
-	@Column(name = "brief", nullable = false)
+	@Column(name = "brief", nullable = false, columnDefinition = "TEXT")
 	private String brief;
 	
 	@JsonIgnore
-	@ManyToOne
-	private Sector sector;
+	@OneToMany(mappedBy="company", cascade=CascadeType.ALL,orphanRemoval = true)
+	private List<CompanyCode> companyCode = new ArrayList<CompanyCode>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy ="company",orphanRemoval=true, cascade = CascadeType.ALL)
 	private List<StockPrice> stockPrice=new ArrayList<StockPrice>();
 
@@ -121,13 +128,14 @@ public class Company {
 		this.brief = brief;
 	}
 
-	public Sector getSector() {
-		return sector;
+	public List<CompanyCode> getCompanyCode() {
+		return companyCode;
 	}
 
-	public void setSector(Sector sector) {
-		this.sector = sector;
+	public void setCompanyCode(List<CompanyCode> companyCode) {
+		this.companyCode = companyCode;
 	}
+
 
 	public List<StockPrice> getStockPrice() {
 		return stockPrice;
@@ -136,8 +144,4 @@ public class Company {
 	public void setStockPrice(List<StockPrice> stockPrice) {
 		this.stockPrice = stockPrice;
 	}
-	
-
-	
-
 }

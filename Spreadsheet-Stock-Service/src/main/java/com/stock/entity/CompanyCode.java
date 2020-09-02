@@ -1,4 +1,4 @@
-package com.company.entity;
+package com.stock.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +30,6 @@ public class CompanyCode {
 	@Column(name="exchange_name")
 	private String exchangeName;
 	
-	@JsonIgnore
 	@ManyToOne
 	private Company company;
 	
@@ -67,5 +66,6 @@ public class CompanyCode {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+	
 	
 }

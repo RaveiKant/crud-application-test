@@ -1,18 +1,18 @@
 package com.company.dto;
 
 public class CompanyCodeDTO {
-	private Long value;
+	private String value;
 	private String exchangeName;
 	public CompanyCodeDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CompanyCodeDTO(Long value, String exchangeName) {
+	public CompanyCodeDTO(String value, String exchangeName) {
 		super();
 		this.value = value;
 		this.exchangeName = exchangeName;
 	}
-	public void setValue(Long value) {
+	public void setValue(String value) {
 		this.value = value;
 	}
 	public String getExchangeName() {
@@ -21,7 +21,7 @@ public class CompanyCodeDTO {
 	public void setExchangeName(String exchangeName) {
 		this.exchangeName = exchangeName;
 	}
-	public Long getValue() {
+	public String getValue() {
 		return value;
 	}
 	

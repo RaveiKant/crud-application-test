@@ -38,7 +38,8 @@ public class CompanyServiceImpl implements CompanyService{
 	public NewCompanyRequest addNewCompany(NewCompanyRequest newC) {
 		if(companyDao.findByName(newC.getName())==null)
 		{
-			Company company = new Company(UUID.randomUUID().toString(),
+			String s[] = UUID.randomUUID().toString().split("-");
+			Company company = new Company(s[0],
 			newC.getName(),
 			newC.getTurnover(),
 			newC.getCeo(),
@@ -78,9 +79,14 @@ public class CompanyServiceImpl implements CompanyService{
 		Company company = companyDao.findByName(name);
 		if(company!=null) {
 			companyDao.delete(company);
-			return "Company with name "+name+"deleted successfully";
+			return "Company with name "+name+" deleted successfully";
 		}
 		return "Company with name "+name+" not found";
+	}
+	@Override
+	public List<Company> patternFind(String keyword) {
+		List<Company> companies = companyDao.findCompanyByKeyword(keyword);
+		return companies;
 	}
 
 }
